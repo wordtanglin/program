@@ -1,0 +1,80 @@
+{
+  "name": "program",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve --mode development",
+    "build": "vue-cli-service build --mode production",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@kangc/v-md-editor": "^1.2.13",
+    "axios": "^0.19.2",
+    "codemirror": "^5.53.2",
+    "core-js": "^3.6.4",
+    "element-ui": "^2.13.0",
+    "marked": "^0.8.2",
+    "mavon-editor": "^2.9.0",
+    "node-sass": "^4.13.1",
+    "sass": "^1.26.3",
+    "showdown": "^1.9.1",
+    "text-loader": "^0.0.1",
+    "vue": "^2.6.11",
+    "vue-markdown": "^2.2.4",
+    "vue-particles": "^1.0.9",
+    "vue-router": "^3.1.5",
+    "vue2-ace-editor": "^0.0.15",
+    "vuex": "^3.1.2"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.2.0",
+    "@vue/cli-plugin-eslint": "~4.2.0",
+    "@vue/cli-plugin-router": "~4.2.0",
+    "@vue/cli-plugin-vuex": "~4.2.0",
+    "@vue/cli-service": "~4.2.0",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "babel-eslint": "^10.0.3",
+    "babel-plugin-component": "^1.1.1",
+    "eslint": "^6.7.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-vue": "^6.1.2",
+    "node-sass": "^4.12.0",
+    "prettier": "^1.19.1",
+    "sass-loader": "^8.0.2",
+    "vue-loader": "^15.9.1",
+    "vue-template-compiler": "^2.6.11",
+    "vue2-ace-editor": "^0.0.15"
+  },
+  "rules": {
+    "react/prop-types": [
+      1,
+      {
+        "ignore": [
+          "className",
+          "children",
+          "location",
+          "params",
+          "location*"
+        ]
+      }
+    ],
+    "no-param-reassign": [
+      0,
+      {
+        "props": false
+      }
+    ],
+    "prefer-rest-params": 1,
+    "arrow-body-style": 0,
+    "prefer-template": 0,
+    "react/prefer-stateless-function": 1,
+    "react/jsx-no-bind": [
+      0,
+      {
+        "ignoreRefs": false,
+        "allowArrowFunctions": false,
+        "allowBind": true
+      }
+    ]
+  }
+}

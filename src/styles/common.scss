@@ -1,0 +1,161 @@
+.mt15 {
+  margin-top: 15px;
+}
+
+.mt20 {
+  margin-top: 20px;
+}
+
+.ml15 {
+  margin-left: 15px;
+}
+
+.ml10 {
+  margin-left: 10px;
+}
+
+.mr15 {
+  margin-right: 15px;
+}
+
+.mr10 {
+  margin-right: 10px;
+}
+
+.mr5 {
+  margin-right: 5px;
+}
+
+.pl15 {
+  padding-left: 15px;
+}
+
+.mb20 {
+  margin-bottom: 20px;
+}
+
+.mb15 {
+  margin-bottom: 15px;
+}
+
+.diplay-block {
+  display: block !important;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.edit-color {
+  color: #438bef;
+}
+
+.fr {
+  float: right;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: #201e25;
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px #201e25;
+  background-color: #201e25;
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: inset 0 0 6px #34323b;
+  background-color: #312f36;
+}
+
+/*定义最上方和最下方的按钮*/
+::-webkit-scrollbar-button {
+  background-color: #201e25;
+  border: 1px solid #201e25;
+}
+
+body {
+  width: 100%;
+  min-width: 1366px;
+  max-width: 100%;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Source Han Sans SC, WenQuanYi Micro Hei, sans-serif;
+}
+
+
+
+/** {
+    font-family: -apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Source Han Sans SC,WenQuanYi Micro Hei,sans-serif;
+}*/
+code{
+  display: inline-flex;
+  line-height: 28px;
+  padding-left: 6px;
+  padding-right: 6px;
+  margin-left: 4px;
+  margin-right: 4px;
+  border-radius: 4px;
+  color: #f7f7fb;
+  background-color: #383645;
+  font: inherit;
+}
+
+.v-md-editor-preview{
+code{
+        display: inline !important;
+  }
+}
+.line-numbers-wrapper{
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+.ace-dracula .ace_print-margin {
+  width: 0px !important;
+}
+
+.v-note-wrapper{
+  min-height: 10px !important;
+}
+
+.markdown-body{
+   pre{
+    padding:0 !important;
+    font-size:20px !important;
+    background-color: #1f1d25 !important;
+   }
+}
+
+ .ace-block-item{
+    border-radius: 8px;
+ }
+
+ .ace-editor-item{
+   border-top-left-radius: 8px;
+ }
+
+ .bottom-menu{
+   border-bottom-left-radius: 8px;
+ }
+
+ .console-title{
+   border-top-right-radius: 8px;
+ }
+ .console{
+   border-bottom-right-radius: 8px;
+ }
+ //滚动条样式
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px
+}
