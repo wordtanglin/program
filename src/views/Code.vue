@@ -80,7 +80,9 @@
                     >
                       {{ choose.key }}.{{ choose.text }}
                     </li>
-                    <li style="opacity:0;">A</li>
+                    <li :style="(sectionsContentNum - 1 != index) ? 'opacity:1' : 'opacity:0'">
+                      {{ item.content.list.filter(a => a.key == item.content.result[0])[0].desc }}
+                    </li>
                   </ul>
                   <ul
                     class="body-choose"
@@ -90,13 +92,21 @@
                     <li
                       v-for="(choose, chooseIndex) of item.content.list"
                       :key="'choose' + chooseIndex"
+                      :class="
+                        sectionsContentNum - 1 != index &&
+                        item.content.result[0] == choose.key
+                          ? 'li-check'
+                          : ''
+                      "
                       @click="
                         selectCheckBox($event, item.content, chooseIndex, index)
                       "
                     >
                       {{ choose.key }}.{{ choose.text }}
                     </li>
-                    <li style="opacity:0;">A</li>
+                    <li :style="(sectionsContentNum - 1 != index) ? 'opacity:1' : 'opacity:0'">
+                      {{ item.content.list.filter(a => a.key == item.content.result[0])[0].desc }}
+                    </li>
                   </ul>
                 </div>
               </li>
@@ -457,6 +467,7 @@ export default {
       if (this.isPreview) {//判断是否为预览
         this.sectionsContentNum = contentList.length;
       }
+      console.log(contentList)
       let curList = contentList.slice(0, this.sectionsContentNum);
       this.list = curList;
       if (!this.isPreview) {//判断是否为预览
@@ -657,6 +668,9 @@ export default {
         li[li.length - 1].style.opacity = "1";
         li[li.length - 1].innerHTML = content.list[chooseIndex].desc;
         this.isContinue = true;
+        let allList = this.list;
+        allList[index].content.result[0] = opt[chooseIndex];
+        this.list = allList;
         //选择选项百度埋点
         baidu_btn("click_option", this.$route.query.detailOrder + "-" + this.detailOrder + "-" + index, localStorage.getItem("userId"), opt[chooseIndex]);
         //保存
