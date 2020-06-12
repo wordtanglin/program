@@ -3,6 +3,8 @@ import { post, get } from "./../utils/http";
 let getAllProgrammingCourse = data =>
   post("/programmingCourse/getAllProgrammingCourses", data);
 
+let getConfig = data => get("/downGitJS", data);
+
 // 创建管理员图片
 let createProgrammingAdmin = data =>
   post("/programmingUser/createProgrammingAdmin", data);
@@ -105,5 +107,6 @@ export {
   createProgrammingAdmin,
   getProgrammingAdmin,
   updateProgrammingAdmin,
-  sendSms
+  sendSms,
+  getConfig
 };

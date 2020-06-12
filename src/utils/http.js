@@ -65,7 +65,7 @@ export function get(url, params = {}) {
         params: params
       })
       .then(response => {
-        if (url === "/download") {
+        if (url === "/download" || url === "/downGitJS") {
           resolve(response.data);
         }
         if (response.data.returnCode === "6006") {

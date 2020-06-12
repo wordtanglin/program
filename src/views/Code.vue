@@ -80,8 +80,18 @@
                     >
                       {{ choose.key }}.{{ choose.text }}
                     </li>
-                    <li :style="(sectionsContentNum - 1 != index) ? 'opacity:1' : 'opacity:0'">
-                      {{ item.content.list.filter(a => a.key == item.content.result[0])[0].desc }}
+                    <li
+                      :style="
+                        sectionsContentNum - 1 != index
+                          ? 'opacity:1'
+                          : 'opacity:0'
+                      "
+                    >
+                      {{
+                        item.content.list.filter(
+                          a => a.key == item.content.result[0]
+                        )[0].desc
+                      }}
                     </li>
                   </ul>
                   <ul
@@ -104,8 +114,18 @@
                     >
                       {{ choose.key }}.{{ choose.text }}
                     </li>
-                    <li :style="(sectionsContentNum - 1 != index) ? 'opacity:1' : 'opacity:0'">
-                      {{ item.content.list.filter(a => a.key == item.content.result[0])[0].desc }}
+                    <li
+                      :style="
+                        sectionsContentNum - 1 != index
+                          ? 'opacity:1'
+                          : 'opacity:0'
+                      "
+                    >
+                      {{
+                        item.content.list.filter(
+                          a => a.key == item.content.result[0]
+                        )[0].desc
+                      }}
                     </li>
                   </ul>
                 </div>
@@ -467,7 +487,6 @@ export default {
       if (this.isPreview) {//判断是否为预览
         this.sectionsContentNum = contentList.length;
       }
-      console.log(contentList)
       let curList = contentList.slice(0, this.sectionsContentNum);
       this.list = curList;
       if (!this.isPreview) {//判断是否为预览
