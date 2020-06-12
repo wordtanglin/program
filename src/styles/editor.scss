@@ -75,6 +75,7 @@
       padding: 20px;
       word-wrap: break-word;
       word-break: break-all;
+      margin: 0;
     }
     
     #turtle {
@@ -82,21 +83,21 @@
       min-height: 50%;
     }
     
-    .console-input {
+    .console .console-input {
       border: none;
       outline: none;
       font-size: 18px;
       width: auto;
       min-width: 200px;
-      color: #522811;
-      background: #fffbea;
+      color: #fff;
+      background: #000;
     }
     
-    .console-input:disabled {
-      color: #522811;
+    .console .console-input:disabled {
+      color: #fff;
     }
     
-    .console-input:focus {
+    .console .console-input:focus {
       border: none;
       box-shadow: 0px 0px 0px #000;
     }

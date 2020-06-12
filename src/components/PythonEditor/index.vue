@@ -53,7 +53,7 @@
       <div class="right">
         <!-- <div id="turtle"></div> -->
         <div class="console-title">终端</div>
-        <div class="console" :id="'console' + index"></div>
+        <pre class="console" :id="'console' + index"></pre>
       </div>
     </div>
   </div>
@@ -63,7 +63,7 @@
 /* eslint-disable */
 import AceEditor from "vue2-ace-editor";
 import SK from './../../../public/scripts/skulpt.min.js'
-import './../../../public/scripts/skulpt-stdlib'
+import './../../../public/scripts/skulpt-stdlib.js'
 
 export default {
   props: {
@@ -103,7 +103,8 @@ export default {
       contentCode: "",
       dataView: "",
       consoleHtml: "",
-      isFinish: false
+      isFinish: false,
+      
     };
   },
   created () {
@@ -140,6 +141,27 @@ export default {
     //     this.run();
     //   }
     // }
+    // const source = {};
+
+    // const loadScript = url => {
+    //     const scr = document.createElement("script");
+    //     scr.type = "application/javascript";
+    //     scr.src = url;
+    //     scr.onerror = function() {
+    //         scr.remove();
+    //         if (!(url in source)) source[url] = 0;
+    //         const num = source[url];
+    //         if (num < 5) {
+    //             console.log("加载url: ", url, "出错, 0.8秒后重试");
+    //             setTimeout(() => {
+    //                 source[url] += 1;
+    //                 loadScript(url);
+    //             }, 800);
+    //         }
+    //     };
+    //     document.body.appendChild(scr);
+    // };
+    // loadScript('https://github.com/wordtanglin/program/blob/master/vue.config.js')
   },
 
   methods: {
@@ -175,7 +197,13 @@ export default {
       document.getElementById("console" + this.index).innerHTML = '';
       let code = this.dataView;
       Sk.pre = "output";
-      Sk.configure({ output: this.outf, read: this.builtinRead, __future__: Sk.python3, inputfunTakesPrompt: true });
+      Sk.configure({ 
+        output: this.outf,
+        read: this.builtinRead,
+         __future__: Sk.python3,
+         inputfun: this.pythonInput,
+         inputfunTakesPrompt: true
+       });
       Sk.python3 = true;
       { (Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target = 'console' + this.index }
       var myPromise = Sk.misceval.asyncToPromise(function () {
@@ -215,6 +243,54 @@ export default {
       })
       document.getElementById("console" + this.index).innerHTML = '';
       this.contentCode = this.content;
+    },
+    pythonInput: function(prompt) {
+        return new Promise((resolve, reject) => {
+
+            let input = document.createElement('input')
+            let br = document.createElement('br')
+            let value = prompt || ''
+            input.type = 'text'
+            input.className = 'console-input'
+            input.style.border = 'none'
+            input.style.outline = 'none'
+            input.style.fontSize = 'initial'
+            input.style.width = 'auto'
+            input.style.minWidth = '100%'
+            input.style.color = '#fff'
+            input.style.background = '#000'
+            input.style.display = 'block'
+            input.setAttribute('value', value)
+            document.getElementById("console" + this.index).onclick = e => input.focus()
+            input.onkeydown = e => {
+                input.style.width = input.value.length * 9 + 'px'
+                if (e.keyCode === 13) {
+                    input.onkeydown = null
+                    document.getElementById("console" + this.index).onclick = null
+                    input.disabled = true
+                    input.className = 'console-input console-input-disable'
+                    value = input.value
+                    input.setAttribute('value', value)
+                    input.setAttribute('disabled', true)
+                    resolve(value)
+                }
+            }
+            document.getElementById("console" + this.index).appendChild(input)
+            document.getElementById("console" + this.index).appendChild(br)
+            if(value){
+              this.isFinish = true;
+              this.$emit('run', {
+                opt_value: 1,
+                category: 'end_program',
+                block_num: this.index,
+                code: code,
+                terminal_text: document.getElementById("console" + this.index).innerHTML,
+                notice: '恭喜通关',
+                index: this.index,
+                right: 1
+              })
+            }
+        })
     },
     outf: function (text) {
       var mypre = document.getElementById("console" + this.index);
@@ -295,4 +371,22 @@ body {
 .ace_content{
   font-family: none!important;
 }
+.console .console-input {
+      border: none;
+      outline: none;
+      font-size: 18px;
+      width: auto;
+      min-width: 200px;
+      color: #fff;
+      background: #000;
+    }
+    
+    .console .console-input:disabled {
+      color: #fff;
+    }
+    
+    .console .console-input:focus {
+      border: none;
+      box-shadow: 0px 0px 0px #000;
+    }
 </style>
