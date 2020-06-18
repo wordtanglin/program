@@ -62,6 +62,12 @@
         <!-- <div id="turtle"></div> -->
         <div class="console-title">终端</div>
         <pre class="console" :id="'console' + index"></pre>
+        <div class="result-tip success tips-fade-leave-active tips-fade-leave-to" :class="[(isFinish && timeSpace) ? 'active' : '']">
+          <div class="content">
+              <i class="el-icon-success" style="font-size: 16px;"></i>
+             <span>运行通过</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -113,6 +119,7 @@ export default {
       dataView: "",
       consoleHtml: "",
       isFinish: false,
+      timeSpace: false,
       d: null
     };
   },
@@ -193,6 +200,10 @@ export default {
       });
       myPromise.then(mod => {
         this.isFinish = true;
+        this.timeSpace = true;
+        setTimeout(() => {
+          this.timeSpace = false;
+        },3000)
         this.$emit('run', {
           opt_value: 1,
           category: 'end_program',
@@ -218,6 +229,7 @@ export default {
     },
     resetCode: function () {//重做
       this.isFinish = false;
+      this.timeSpace = false;
       this.$emit('run', {
         opt_value: '',
         category: 'click_redo_button',
@@ -227,21 +239,22 @@ export default {
       this.contentCode = this.content;
     },
     pythonInput: function (prompt) {
+
+      document.getElementById("console" + this.index).innerHTML += prompt;
+
       return new Promise((resolve, reject) => {
 
         let input = document.createElement('input')
         let br = document.createElement('br')
-        let value = prompt || ''
+        let value = ''
         input.type = 'text'
         input.className = 'console-input'
         input.style.border = 'none'
         input.style.outline = 'none'
         input.style.fontSize = 'initial'
         input.style.width = 'auto'
-        input.style.minWidth = '100%'
         input.style.color = '#fff'
         input.style.background = '#000'
-        input.style.display = 'block'
         input.setAttribute('value', value)
         document.getElementById("console" + this.index).onclick = e => input.focus()
         input.onkeydown = e => {
@@ -259,22 +272,13 @@ export default {
         }
         document.getElementById("console" + this.index).appendChild(input)
         document.getElementById("console" + this.index).appendChild(br)
-        if (value) {
-          this.isFinish = true;
-          this.$emit('run', {
-            opt_value: 1,
-            category: 'end_program',
-            block_num: this.index,
-            code: code,
-            terminal_text: document.getElementById("console" + this.index).innerHTML,
-            notice: '恭喜通关',
-            index: this.index,
-            right: 1
-          })
-        }
+        setTimeout(() => {
+          input.focus();
+        },500)
       })
     },
     outf: function (text) {
+
       var mypre = document.getElementById("console" + this.index);
       mypre.innerHTML = mypre.innerHTML + text;
     },

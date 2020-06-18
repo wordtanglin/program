@@ -76,6 +76,8 @@
       word-wrap: break-word;
       word-break: break-all;
       margin: 0;
+      white-space: pre-wrap;
+      word-wrap: break-word;
     }
     
     #turtle {
@@ -137,6 +139,8 @@
       width: 50%;
       box-sizing: border-box;
       height: 100%;
+      position: relative;
+      overflow: hidden;
     }
     
     #loading {
@@ -342,4 +346,48 @@
     }
     
   }
-  
+  .result-tip {
+    padding: 8px 0;
+    background: #121017;
+    position: absolute;
+    bottom: -62px;
+    width: 100%;
+    border-bottom-right-radius: 8px;
+    height: 44px;
+    line-height: 44px;
+  }
+  .result-tip.active{
+    bottom: 0px;
+  }
+  .result-tip{
+    transition:bottom 1s;
+  }
+  .result-tip.success {
+    color: #74c17c;
+    background-color: rgba(116, 193, 124, .2)
+  }
+
+  .result-tip .content {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    margin-right: 16px;
+    overflow: hidden;
+    font-weight: 500;
+    padding-left: 16px;
+    
+  }
+  .result-tip .content {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    margin-right: 16px;
+    overflow: hidden;
+    font-weight: 500;
+    padding-left: 16px;
+  }
+  .result-tip .content span{
+    padding-left: 10px;
+  } 
